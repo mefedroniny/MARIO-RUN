@@ -5,17 +5,20 @@ import sys
 pygame.init()
 pygame.mixer.init()
 
-# Spustitelne okno s hornim barem
 WIDTH, HEIGHT = 1280, 720
 is_fullscreen = False
 screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE)
 pygame.display.set_caption("Mario Run")
+menu_bg = pygame.image.load('1.png')  
+
 
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 RED = (255, 0, 0)
 GRAY = (180, 180, 180)
 font = pygame.font.SysFont(None, 40)
+title_font = pygame.font.SysFont(None, 100)  
+
 
 MENU = 'menu'
 SETTINGS = 'settings'
@@ -100,7 +103,7 @@ def main():
             self.rect = self.image.get_rect()
             self.rect.x = 100
             self.rect.bottom = ground_level
-            self.rect.inflate_ip(4, 4)  # zvětší hitbox o trochu
+            self.rect.inflate_ip(4, 4)  
             self.velocity_y = 0
             self.jump_count = 0
             self.max_jumps = 2
@@ -291,7 +294,7 @@ def main():
         clock.tick(60)
 
 while True:
-    screen.fill(WHITE)
+    screen.blit(pygame.transform.scale(menu_bg, (WIDTH, HEIGHT)), (0, 0))
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
